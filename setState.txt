@@ -1,0 +1,26 @@
+Ciclo de vida de update:
+
+Ciclos de vida comunes:
+
+-render: React actualiza el DOM y referencias.
+-componentDidUpdate: Método invocado inmediatamente después de que ocurre una actualización.
+
+
+
+Ciclos de vida menos comunes:
+
+-getDerivedStateFromProps: En la version 16.3 de react esta funcionalidad es llamada exclusivamente cuando 
+hay nuevas propiedades, sin embargo a partir de la version de react 16.4 se llama en el setState() y en el
+forceUpdate() o cuando hay propiedades nuevas.
+-shouldComponentUpdate: Se utiliza para mejorar la eficiencia, pero solo debe utilizarse en casos muy particulares.
+-getSnapshotBeforeUpdate
+
+
+
+16.4 orden: 
+"Fase Render" pura y sin efectos colaterales, puede ser pausada o abortada o reiniciada por react:
+getDerivedStateFromProps -> shouldComponentUpdate -> render 
+"Fase Precomit" Puede leer el DOM:
+-> getSnapshotBeforeUpdate
+"Fase Commit" puede operar sobre el DOM, ejecutar side-effects, agendar actualizaciones:
+-> componentDidUpdate
